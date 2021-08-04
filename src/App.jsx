@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./assets/css/App.css";
 import ResultPanel from "./components/ResultPanel";
-// import Logo from "./assets/images/logo.svg";
 
 function getImageUrl(name) {
   return new URL(`./assets/images/${name}`, import.meta.url).href;
