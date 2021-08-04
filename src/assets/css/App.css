@@ -12,7 +12,11 @@ input[type="number"] {
 
 .bill-input,
 .people-input {
-  @apply py-2 px-4 h-12 w-full rounded-sm bg-cyan-200 text-right focus:outline-none focus:ring focus:ring-cyan placeholder-cyan-400;
+  @apply py-2 px-4 h-12 w-full rounded-sm bg-cyan-200 text-right focus:outline-none focus:border-2 focus:rounded-md focus:border-cyan placeholder-cyan-400;
+}
+
+.alert {
+  @apply focus:border-red-500 !important;
 }
 
 .label {
@@ -25,9 +29,9 @@ input[type="number"] {
 }
 
 .tip-btn {
-  @apply bg-cyan-600 font-bold py-1 hover:bg-cyan hover:text-cyan-600 active:bg-cyan-350  active:text-cyan-600;
+  @apply block bg-cyan-600 font-bold py-1 hover:bg-cyan-350 hover:text-cyan-600 active:bg-cyan-350  active:text-cyan-600;
 }
 
 .tip-input {
-  @apply bg-cyan-200 text-cyan-600 placeholder-cyan-600 focus:outline-none focus:ring focus:ring-cyan;
+  @apply bg-cyan-200  text-cyan-600 placeholder-cyan-500 focus:outline-none  focus:border-2 focus:rounded-md focus:border-cyan;
 }

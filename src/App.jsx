@@ -1,100 +1,212 @@
 import React, { useState } from "react";
 import "./assets/css/App.css";
+import ResultPanel from "./components/ResultPanel";
 // import Logo from "./assets/images/logo.svg";
 
 function getImageUrl(name) {
   return new URL(`./assets/images/${name}`, import.meta.url).href;
 }
 
-function App() {
-  return (
-    <div className="container mx-auto">
-      <header className="flex justify-center my-12">
-        <img src={getImageUrl("logo.svg")} />
-      </header>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bill: "",
+      tipPercent: "",
+      people: "",
+    };
+  }
 
-      <main className="bg-white rounded-t-3xl md:rounded-b-3xl w-full p-8 grid md:gap-6 md:grid-flow-row md:grid-cols-2">
-        <aside className="">
-          <section class="mb-8">
-            <label className="label">Bill</label>
-            <div className="input-wrapper relative">
-              <img
-                className="absolute top-1/2 bottom-1/2 my-auto left-5"
-                src={getImageUrl("icon-dollar.svg")}
-              />
-              <input
-                type="number"
-                step="0.01"
-                className="bill-input"
-                placeholder="0"
-              />
-            </div>
-          </section>
+  getTipAmount() {
+    const { bill, tipPercent, people } = this.state;
 
-          <section className="mb-8">
-            <label className="label">Select Tip %</label>
-            <div className="grid gap-4 grid-flow-row grid-cols-2">
-              <button type="button" value="5%" className="tip-btn">
-                5%
-              </button>
-              <button type="button" value="10%" className="tip-btn">
-                10%
-              </button>
-              <button type="button" value="15%" className="tip-btn">
-                15%
-              </button>
-              <button type="button" value="25%" className="tip-btn">
-                25%
-              </button>
-              <button type="button" value="50%" className="tip-btn">
-                50%
-              </button>
-              <input type="number" className="tip-input" placeholder="Custom" />
-            </div>
-          </section>
+    const result =
+      (parseFloat(bill) * (parseFloat(tipPercent) / 100)) / parseInt(people);
 
-          <section className="mb-8 md:mb-0">
-            <label className="label">Number of People</label>
-            <div className="input-wrapper relative">
-              <img
-                className="absolute top-1/2 bottom-1/2 my-auto left-5"
-                src={getImageUrl("icon-person.svg")}
-              />
-              <input type="number" className="people-input" placeholder="1" />
-            </div>
-          </section>
-        </aside>
+    if (bill === "" || tipPercent === "" || people === "") {
+      return 0;
+    } else {
+      return result.toFixed(2);
+    }
+  }
 
-        <section className="rounded-xl bg-cyan-600 p-6 text-white h-full flex flex-col justify-between">
-          <div>
-            <article class="mb-6 flex justify-between">
-              <div>
-                <label className="font-bold">Tip Amount</label>
-                <p className="text-cyan-400 text-sm">/ person</p>
+  getTotalAmount() {
+    const { bill, tipPercent, people } = this.state;
+    const result =
+      parseFloat(bill) / parseInt(people) + parseFloat(this.getTipAmount());
+    if (bill === "" || tipPercent === "" || people === "") {
+      return 0;
+    } else {
+      return result.toFixed(2);
+    }
+  }
+
+  resetState = () => {
+    return this.setState({ bill: "", tipPercent: "", people: "" });
+  };
+
+  onChangeRadioValue = (e) => {
+    this.setState({ tipPercent: e.target.value });
+  };
+
+  render() {
+    return (
+      <div className="container mx-auto">
+        <header className="flex justify-center my-12">
+          <img src={getImageUrl("logo.svg")} />
+        </header>
+
+        <main className="bg-white rounded-t-3xl md:rounded-b-3xl w-full p-8 grid md:gap-6 md:grid-flow-row md:grid-cols-2">
+          <aside className="">
+            <section className="mb-8">
+              <label className="label">Bill</label>
+              <div className="input-wrapper relative">
+                <img
+                  className="absolute top-1/2 bottom-1/2 my-auto left-5"
+                  src={getImageUrl("icon-dollar.svg")}
+                />
+                <input
+                  type="number"
+                  step="0.01"
+                  className="bill-input"
+                  placeholder="0"
+                  value={this.state.bill}
+                  onChange={(e) => this.setState({ bill: e.target.value })}
+                />
               </div>
+            </section>
 
-              <h2 className="text-cyan text-3xl font-bold">$4.27</h2>
-            </article>
+            <section className="mb-8">
+              <label className="label">Select Tip %</label>
+              <div
+                className="grid gap-4 grid-flow-row grid-cols-2"
+                onClick={this.onChangeRadioValue}
+              >
+                <label>
+                  <input
+                    className="hidden peer"
+                    type="radio"
+                    value="5"
+                    name="tip-percent"
+                    id="five-percent"
+                  />
+                  <span
+                    htmlFor="five-percent"
+                    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                  >
+                    5%
+                  </span>
+                </label>
+                <label>
+                  <input
+                    className="hidden peer"
+                    type="radio"
+                    value="10"
+                    name="tip-percent"
+                    id="ten-percent"
+                  />
+                  <span
+                    htmlFor="ten-percent"
+                    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                  >
+                    10%
+                  </span>
+                </label>
+                <label>
+                  <input
+                    className="hidden peer"
+                    type="radio"
+                    value="15"
+                    name="tip-percent"
+                    id="fifteen-percent"
+                  />
+                  <span
+                    htmlFor="fifteen-percent"
+                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                  >
+                    15%
+                  </span>
+                </label>
+                <label>
+                  <input
+                    className="hidden peer"
+                    type="radio"
+                    value="25"
+                    name="tip-percent"
+                    id="twentyfive-percent"
+                  />
+                  <span
+                    htmlFor="twentyfive-percent"
+                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                  >
+                    25%
+                  </span>
+                </label>
+                <label>
+                  <input
+                    className="hidden peer"
+                    type="radio"
+                    value="50"
+                    name="tip-percent"
+                    id="fifty-percent"
+                  />
+                  <span
+                    htmlFor="fifty-percent"
+                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                  >
+                    50%
+                  </span>
+                </label>
 
-            <article class="mb-6 flex justify-between">
-              <div>
-                <label className="font-bold">Total</label>
-                <p className="text-cyan-400 text-sm">/ person</p>
+                <input
+                  type="number"
+                  className="tip-input"
+                  placeholder="Custom"
+                  onChange={(e) =>
+                    this.setState({ tipPercent: e.target.value })
+                  }
+                />
               </div>
+            </section>
 
-              <h2 className="text-cyan text-3xl font-bold">$32.79</h2>
-            </article>
-          </div>
-          <button
-            type="button"
-            className="uppercase text-center bg-cyan w-full py-3 rounded text-cyan-600 font-bold text-xl"
-          >
-            Reset
-          </button>
-        </section>
-      </main>
-    </div>
-  );
+            <section className="mb-8 md:mb-0">
+              <div className="flex justify-between">
+                <label className=" label">Number of People</label>
+                <span
+                  className={`font-semibold ${
+                    this.state.people === "0" ? "text-red-400" : "hidden"
+                  }`}
+                >
+                  Can't be zero
+                </span>
+              </div>
+              <div className="input-wrapper relative">
+                <img
+                  className="absolute top-1/2 bottom-1/2 my-auto left-5"
+                  src={getImageUrl("icon-person.svg")}
+                />
+                <input
+                  type="number"
+                  className={`people-input ${
+                    this.state.people === "0" ? "alert" : ""
+                  }`}
+                  placeholder="0"
+                  value={this.state.people}
+                  onChange={(e) => this.setState({ people: e.target.value })}
+                />
+              </div>
+            </section>
+          </aside>
+
+          <ResultPanel
+            tip={this.getTipAmount()}
+            total={this.getTotalAmount()}
+            resetState={this.resetState}
+          />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
