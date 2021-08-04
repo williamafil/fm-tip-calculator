@@ -23,6 +23,10 @@ class App extends React.Component {
     const result =
       (parseFloat(bill) * (parseFloat(tipPercent) / 100)) / parseInt(people);
 
+    if (people <= 0) {
+      return 0;
+    }
+
     if (bill === "" || tipPercent === "" || people === "") {
       return 0;
     } else {
@@ -34,6 +38,11 @@ class App extends React.Component {
     const { bill, tipPercent, people } = this.state;
     const result =
       parseFloat(bill) / parseInt(people) + parseFloat(this.getTipAmount());
+
+    if (people <= 0) {
+      return 0;
+    }
+
     if (bill === "" || tipPercent === "" || people === "") {
       return 0;
     } else {
