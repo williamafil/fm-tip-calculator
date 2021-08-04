@@ -7,3 +7,7 @@
 body {
   @apply font-space-mono bg-cyan-300;
 }
+
+input {
+  @apply text-2xl font-bold text-cyan-600;
+}
