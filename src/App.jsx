@@ -61,17 +61,18 @@ class App extends React.Component {
     return (
       <div className="container mx-auto">
         <header className="flex justify-center my-12">
-          <img src={getImageUrl("logo.svg")} />
+          <img src={getImageUrl("logo.svg")} alt="logo" />
         </header>
 
         <main className="bg-white rounded-t-3xl md:rounded-b-3xl w-full p-8 grid md:gap-6 md:grid-flow-row md:grid-cols-2">
           <aside className="">
-            <section className="mb-8">
+            <article className="mb-8">
               <label className="label">Bill</label>
               <div className="input-wrapper relative">
                 <img
                   className="absolute top-1/2 bottom-1/2 my-auto left-5"
                   src={getImageUrl("icon-dollar.svg")}
+                  alt="dollar icon"
                 />
                 <input
                   type="number"
@@ -82,15 +83,15 @@ class App extends React.Component {
                   onChange={(e) => this.setState({ bill: e.target.value })}
                 />
               </div>
-            </section>
+            </article>
 
-            <section className="mb-8">
+            <article className="mb-8">
               <label className="label">Select Tip %</label>
               <div
                 className="grid gap-4 grid-flow-row grid-cols-2"
                 onClick={this.onChangeRadioValue}
               >
-                <label>
+                <div>
                   <input
                     className="hidden peer"
                     type="radio"
@@ -98,14 +99,14 @@ class App extends React.Component {
                     name="tip-percent"
                     id="five-percent"
                   />
-                  <span
+                  <label
                     htmlFor="five-percent"
                     className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
                   >
                     5%
-                  </span>
-                </label>
-                <label>
+                  </label>
+                </div>
+                <div>
                   <input
                     className="hidden peer"
                     type="radio"
@@ -113,14 +114,14 @@ class App extends React.Component {
                     name="tip-percent"
                     id="ten-percent"
                   />
-                  <span
+                  <label
                     htmlFor="ten-percent"
                     className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
                   >
                     10%
-                  </span>
-                </label>
-                <label>
+                  </label>
+                </div>
+                <div>
                   <input
                     className="hidden peer"
                     type="radio"
@@ -128,14 +129,14 @@ class App extends React.Component {
                     name="tip-percent"
                     id="fifteen-percent"
                   />
-                  <span
+                  <label
                     htmlFor="fifteen-percent"
                     className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
                   >
                     15%
-                  </span>
-                </label>
-                <label>
+                  </label>
+                </div>
+                <div>
                   <input
                     className="hidden peer"
                     type="radio"
@@ -143,14 +144,14 @@ class App extends React.Component {
                     name="tip-percent"
                     id="twentyfive-percent"
                   />
-                  <span
+                  <label
                     htmlFor="twentyfive-percent"
                     className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
                   >
                     25%
-                  </span>
-                </label>
-                <label>
+                  </label>
+                </div>
+                <div>
                   <input
                     className="hidden peer"
                     type="radio"
@@ -158,13 +159,13 @@ class App extends React.Component {
                     name="tip-percent"
                     id="fifty-percent"
                   />
-                  <span
+                  <label
                     htmlFor="fifty-percent"
                     className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
                   >
                     50%
-                  </span>
-                </label>
+                  </label>
+                </div>
 
                 <input
                   type="number"
@@ -175,9 +176,9 @@ class App extends React.Component {
                   }
                 />
               </div>
-            </section>
+            </article>
 
-            <section className="mb-8 md:mb-0">
+            <article className="mb-8 md:mb-0">
               <div className="flex justify-between">
                 <label className=" label">Number of People</label>
                 <span
@@ -192,6 +193,7 @@ class App extends React.Component {
                 <img
                   className="absolute top-1/2 bottom-1/2 my-auto left-5"
                   src={getImageUrl("icon-person.svg")}
+                  alt="person icon"
                 />
                 <input
                   type="number"
@@ -203,7 +205,7 @@ class App extends React.Component {
                   onChange={(e) => this.setState({ people: e.target.value })}
                 />
               </div>
-            </section>
+            </article>
           </aside>
 
           <ResultPanel
