@@ -23,10 +23,10 @@ class App extends React.Component {
       people: "",
       checkedRadio: null
     };
+    this.tipInputRef = React.createRef();
   }
 
   changeRadio = (e) => {
-    console.log('changeRadio: ', e.target.value)
     return this.setState({checkedRadio: e.target.id})
   }
 
@@ -68,6 +68,7 @@ class App extends React.Component {
   };
 
   onChangeRadioValue = (e) => {
+    this.tipInputRef.current.value = null;
     this.setState({ tipPercent: e.target.value });
   };
 
@@ -143,86 +144,11 @@ class App extends React.Component {
                   })
                 }
 
-                {/* <div>
-                  <input
-                    className="hidden peer"
-                    type="radio"
-                    value="5"
-                    name="tip-percent"
-                    id="five-percent"
-                  />
-                  <label
-                    htmlFor="five-percent"
-                    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                  >
-                    5%
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="hidden peer"
-                    type="radio"
-                    value="10"
-                    name="tip-percent"
-                    id="ten-percent"
-                  />
-                  <label
-                    htmlFor="ten-percent"
-                    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                  >
-                    10%
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="hidden peer"
-                    type="radio"
-                    value="15"
-                    name="tip-percent"
-                    id="fifteen-percent"
-                  />
-                  <label
-                    htmlFor="fifteen-percent"
-                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                  >
-                    15%
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="hidden peer"
-                    type="radio"
-                    value="25"
-                    name="tip-percent"
-                    id="twentyfive-percent"
-                  />
-                  <label
-                    htmlFor="twentyfive-percent"
-                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                  >
-                    25%
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="hidden peer"
-                    type="radio"
-                    value="50"
-                    name="tip-percent"
-                    id="fifty-percent"
-                  />
-                  <label
-                    htmlFor="fifty-percent"
-                    className="tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                  >
-                    50%
-                  </label>
-                </div> */}
-
                 <input
                   type="number"
                   className="tip-input"
                   placeholder="Custom"
+                  ref={this.tipInputRef}
                   onChange={(e) =>
                     this.setState({ tipPercent: e.target.value, checkedRadio: null })
                   }
