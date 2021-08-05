@@ -151,75 +151,99 @@ module.exports = {
 - Semantic HTML5 markup
 - Mobile-first workflow
 
-<br/>
+<br/><br/>
 
-### What I learned
+## What I learned
+<details>
+  <summary>Updating state from child component</summary>
+  
+  ```js
+  // helper function
+  resetState = () => {
+    return this.setState({ bill: "", tipPercent: "", people: "" });
+  };
 
-- ##### Manage state in class component
-- ##### Updating state from child component
+  // pass helper function to child component as props
+  <ResultPanel
+    tip={this.getTipAmount()}
+    total={this.getTotalAmount()}
+    resetState={this.resetState}
+  />;
+  ```
 
-```js
-// helper function
-resetState = () => {
-  return this.setState({ bill: "", tipPercent: "", people: "" });
-};
-
-// pass helper function to child component as props
-<ResultPanel
-  tip={this.getTipAmount()}
-  total={this.getTotalAmount()}
-  resetState={this.resetState}
-/>;
-```
-
-```js
-// Component
-<button
-  type="button"
-  className="uppercase text-center bg-cyan w-full py-3 rounded text-cyan-600 font-bold text-xl"
-  onClick={props.resetState}
->
-  Reset
-</button>
-```
-
-- ##### Use of Tailwind CSS Peer
-
-```html
-<label>
-  <input
-    className="hidden peer"
-    type="radio"
-    value="5"
-    name="tip-percent"
-    id="five-percent"
-  />
-  <span
-    htmlFor="five-percent"
-    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+  ```js
+  // Component
+  <button
+    type="button"
+    className="uppercase text-center bg-cyan w-full py-3 rounded text-cyan-600 font-bold text-xl"
+    onClick={props.resetState}
   >
-    5%
-  </span>
-</label>
-```
+    Reset
+  </button>
+  ```
+</details>
 
-Translate into classic CSS shown as below:
 
-```css
-.peer:checked ~ .peer-checked\:bg-cyan {
-  background-color: hsl(172, 67%, 45%);
-}
-```
+<details>
+  <summary>Use of Tailwind CSS Peer</summary>
 
-### Continued development
+  ```html
+  <label>
+    <input
+      className="hidden peer"
+      type="radio"
+      value="5"
+      name="tip-percent"
+      id="five-percent"
+    />
+    <span
+      htmlFor="five-percent"
+      className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+    >
+      5%
+    </span>
+  </label>
+  ```
+
+  Translate into classic CSS shown as below:
+
+  ```css
+  .peer:checked ~ .peer-checked\:bg-cyan {
+    background-color: hsl(172, 67%, 45%);
+  }
+  ```
+
+</details>
+
+
+<details>
+  <summary>Manage state in class component</summary>
+</details>
+
+<details>
+  <summary>Controlled Form</summary>
+</details>
+
+<details>
+  <summary>Reset input value with Ref </summary>
+</details>
+
+<br/><br/>
+
+## Continued development
 
 Tip percentage buttons and input fields can be wrapped into components to enhance readability and code structure.
 
-### Useful resources
+<br/><br/>
+## Useful resources
 
 - [Sibling selector variants](https://blog.tailwindcss.com/tailwindcss-2-2) - Code sample on Tailwind CSS v2.2 new feature - peer-\*
 
 - [Refs in React JS](https://reactjs.org/docs/refs-and-the-dom.html)
+
+- [Forms](https://reactjs.org/docs/forms.html)
+
+- [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html#gatsby-focus-wrapper)
 
 ## Author
 
