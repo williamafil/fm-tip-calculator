@@ -6,14 +6,13 @@ function getImageUrl(name) {
   return new URL(`./assets/images/${name}`, import.meta.url).href;
 }
 
-
 const radioOptions = [
-  {id: 1, name: 'five-percent', value: 5},
-  {id: 2, name: 'ten-percent', value: 10},
-  {id: 3, name: 'fifteen-percent', value: 15},
-  {id: 4, name: 'twentyfive-percent', value: 25},
-  {id: 5, name: 'fifty-percent', value: 50},
-]
+  { id: 1, name: "five-percent", value: 5 },
+  { id: 2, name: "ten-percent", value: 10 },
+  { id: 3, name: "fifteen-percent", value: 15 },
+  { id: 4, name: "twentyfive-percent", value: 25 },
+  { id: 5, name: "fifty-percent", value: 50 },
+];
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,20 +20,24 @@ class App extends React.Component {
       bill: "",
       tipPercent: "",
       people: "",
-      checkedRadio: null
+      checkedRadio: null,
     };
     this.tipInputRef = React.createRef();
   }
 
   changeRadio = (e) => {
-    return this.setState({checkedRadio: e.target.id})
-  }
+    return this.setState({ checkedRadio: e.target.id });
+  };
 
   getTipAmount() {
     const { bill, tipPercent, people } = this.state;
 
     const result =
       (parseFloat(bill) * (parseFloat(tipPercent) / 100)) / parseInt(people);
+
+    if (bill < 0) {
+      return 0;
+    }
 
     if (people <= 0) {
       return 0;
@@ -64,7 +67,12 @@ class App extends React.Component {
   }
 
   resetState = () => {
-    return this.setState({ bill: "", tipPercent: "", people: "", checkedRadio: null });
+    return this.setState({
+      bill: "",
+      tipPercent: "",
+      people: "",
+      checkedRadio: null,
+    });
   };
 
   onChangeRadioValue = (e) => {
@@ -86,7 +94,7 @@ class App extends React.Component {
                 <label className="label">Bill</label>
                 <span
                   className={`font-semibold ${
-                    parseInt(this.state.bill) < 0  ? "text-red-400" : "hidden"
+                    parseInt(this.state.bill) < 0 ? "text-red-400" : "hidden"
                   }`}
                 >
                   Can't be negative number
@@ -113,36 +121,29 @@ class App extends React.Component {
 
             <article className="mb-8">
               <label className="label">Select Tip %</label>
-              
-              <div
-                className="grid gap-4 grid-flow-row grid-cols-2"
-              >
-              
-              
 
-                {
-                  radioOptions.map((item, idx) => {
-                    return (
-                      <div key={item.id} onClick={this.onChangeRadioValue}>
-                        <input
-                          className="hidden peer"
-                          type="radio"
-                          name="tip-percent"
-                          id={item.id}
-                          checked={this.state.checkedRadio == (idx+1)}
-                          value={item.value}
-                          onChange={this.changeRadio}
-                        />
-                        <label
-                          htmlFor={item.id}
-                          className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-                        >
-                          {item.value}%
-                        </label>
-                      </div>
-                    );
-                  })
-                }
+              <div className="grid gap-4 grid-flow-row grid-cols-2">
+                {radioOptions.map((item, idx) => {
+                  return (
+                    <div key={item.id} onClick={this.onChangeRadioValue}>
+                      <input
+                        className="hidden peer"
+                        type="radio"
+                        name="tip-percent"
+                        id={item.id}
+                        checked={this.state.checkedRadio == idx + 1}
+                        value={item.value}
+                        onChange={this.changeRadio}
+                      />
+                      <label
+                        htmlFor={item.id}
+                        className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+                      >
+                        {item.value}%
+                      </label>
+                    </div>
+                  );
+                })}
 
                 <input
                   type="number"
@@ -150,22 +151,21 @@ class App extends React.Component {
                   placeholder="Custom"
                   ref={this.tipInputRef}
                   onChange={(e) =>
-                    this.setState({ tipPercent: e.target.value, checkedRadio: null })
+                    this.setState({
+                      tipPercent: e.target.value,
+                      checkedRadio: null,
+                    })
                   }
                 />
               </div>
             </article>
-
-
-            
-
 
             <article className="mb-8 md:mb-0">
               <div className="flex justify-between">
                 <label className=" label">Number of People</label>
                 <span
                   className={`font-semibold ${
-                    parseInt(this.state.people) <= 0  ? "text-red-400" : "hidden"
+                    parseInt(this.state.people) <= 0 ? "text-red-400" : "hidden"
                   }`}
                 >
                   Can't be less or equal to zero
