@@ -35,19 +35,23 @@ Users should be able to:
 - Solution URL: [Github Repo](https://github.com/williamafil/fm-tip-calculator)
 - Live Site URL: [Online Demo](https://williamafil.github.io/fm-tip-calculator/)
 
-<br/><br/>
+<br/>
 
 ## My process
 
 ### Setup Project with Vite2
 
+<details>
+  <summary>Install Vite + React</summary>
+
 ```
 $ npm init vite@latest fm-tip-calculator --template react
 ```
 
-<br/>
+</details>
 
-### Setting up Tailwind CSS
+<details>
+  <summary>Setting up Tailwind CSS</summary>
 
 Follow this tutorial on Tailwind CSS official site: [Install Tailwind CSS with Vue 3 and Vite](https://tailwindcss.com/docs/guides/vue-3-vite#setting-up-tailwind-css)
 
@@ -60,7 +64,7 @@ $ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 #### Create Config Files
 
 ```
-$ npx tailwindcss init -p
+  $ npx tailwindcss init -p
 ```
 
 #### Configure Purge ( tree-shake unused styles in production)
@@ -96,7 +100,10 @@ module.exports = {
 @tailwind utilities;
 ```
 
-#### Style Setup
+</details>
+
+<details>
+  <summary>Style Setup</summary>
 
 ```js
 module.exports = {
@@ -141,7 +148,9 @@ module.exports = {
 };
 ```
 
-<br/><br/>
+</details>
+
+<br/>
 
 ### Built with
 
@@ -151,70 +160,70 @@ module.exports = {
 - Semantic HTML5 markup
 - Mobile-first workflow
 
-<br/><br/>
+<br/>
 
 ## What I learned
+
 <details>
-  <summary>Updating state from child component</summary>
-  
-  ```js
-  // helper function
-  resetState = () => {
-    return this.setState({ bill: "", tipPercent: "", people: "" });
-  };
+<summary>Updating state from child component</summary>
 
-  // pass helper function to child component as props
-  <ResultPanel
-    tip={this.getTipAmount()}
-    total={this.getTotalAmount()}
-    resetState={this.resetState}
-  />;
-  ```
+```js
+// helper function
+resetState = () => {
+  return this.setState({ bill: "", tipPercent: "", people: "" });
+};
 
-  ```js
-  // Component
-  <button
-    type="button"
-    className="uppercase text-center bg-cyan w-full py-3 rounded text-cyan-600 font-bold text-xl"
-    onClick={props.resetState}
-  >
-    Reset
-  </button>
-  ```
+// pass helper function to child component as props
+<ResultPanel
+  tip={this.getTipAmount()}
+  total={this.getTotalAmount()}
+  resetState={this.resetState}
+/>;
+```
+
+```js
+// Component
+<button
+  type="button"
+  className="uppercase text-center bg-cyan w-full py-3 rounded text-cyan-600 font-bold text-xl"
+  onClick={props.resetState}
+>
+  Reset
+</button>
+```
+
 </details>
-
 
 <details>
   <summary>Use of Tailwind CSS Peer</summary>
 
-  ```html
-  <label>
-    <input
-      className="hidden peer"
-      type="radio"
-      value="5"
-      name="tip-percent"
-      id="five-percent"
-    />
-    <span
-      htmlFor="five-percent"
-      className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
-    >
-      5%
-    </span>
-  </label>
-  ```
+```html
+<label>
+  <input
+    className="hidden peer"
+    type="radio"
+    value="5"
+    name="tip-percent"
+    id="five-percent"
+  />
+  <span
+    htmlFor="five-percent"
+    className=" tip-btn peer-checked:bg-cyan peer-checked:text-cyan-600"
+  >
+    5%
+  </span>
+</label>
+```
 
-  Translate into classic CSS shown as below:
+Translate into classic CSS shown as below:
 
-  ```css
-  .peer:checked ~ .peer-checked\:bg-cyan {
-    background-color: hsl(172, 67%, 45%);
-  }
-  ```
+```css
+.peer:checked ~ .peer-checked\:bg-cyan {
+  background-color: hsl(172, 67%, 45%);
+}
+```
 
 </details>
-
 
 <details>
   <summary>Manage state in class component</summary>
@@ -234,7 +243,8 @@ module.exports = {
 
 Tip percentage buttons and input fields can be wrapped into components to enhance readability and code structure.
 
-<br/><br/>
+<br/>
+
 ## Useful resources
 
 - [Sibling selector variants](https://blog.tailwindcss.com/tailwindcss-2-2) - Code sample on Tailwind CSS v2.2 new feature - peer-\*
@@ -250,4 +260,4 @@ Tip percentage buttons and input fields can be wrapped into components to enhanc
 - Website - [William Kang](https://williamafil.github.io/fm-tip-calculator/)
 - Frontend Mentor - [@williamafil](https://www.frontendmentor.io/profile/williamafil)
 
-<br/><br/><br/><br/><br/><br/><br/><br/>
+<br/>
