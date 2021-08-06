@@ -11,7 +11,9 @@ const ResultPanel = (props) => {
             <p className="text-cyan-400 text-sm">/ person</p>
           </div>
 
-          <h2 className="text-cyan text-3xl md:text-4xl lg:text-5xl font-bold">${tip}</h2>
+          <h2 className="text-cyan text-3xl md:text-4xl lg:text-5xl font-bold">
+            ${tip}
+          </h2>
         </article>
 
         <article className="mb-6 flex justify-between">
@@ -20,7 +22,9 @@ const ResultPanel = (props) => {
             <p className="text-cyan-400 text-sm">/ person</p>
           </div>
 
-          <h2 className="text-cyan text-3xl md:text-4xl lg:text-5xl font-bold">${total}</h2>
+          <h2 className="text-cyan text-3xl md:text-4xl lg:text-5xl font-bold">
+            ${total}
+          </h2>
         </article>
       </div>
       <button
