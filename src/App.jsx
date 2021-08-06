@@ -25,9 +25,9 @@ class App extends React.Component {
     this.tipInputRef = React.createRef();
   }
 
-  changeRadio = (e) => {
+  changeRadio(e) {
     return this.setState({ checkedRadio: e.target.id });
-  };
+  }
 
   getTipAmount() {
     const { bill, tipPercent, people } = this.state;
@@ -66,19 +66,20 @@ class App extends React.Component {
     }
   }
 
-  resetState = () => {
-    return this.setState({
+  resetState() {
+    this.tipInputRef.current.value = null;
+    this.setState({
       bill: "",
       tipPercent: "",
       people: "",
       checkedRadio: null,
     });
-  };
+  }
 
-  onChangeRadioValue = (e) => {
+  onChangeRadioValue(e) {
     this.tipInputRef.current.value = null;
     this.setState({ tipPercent: e.target.value });
-  };
+  }
 
   render() {
     return (
@@ -125,7 +126,10 @@ class App extends React.Component {
               <div className="grid gap-4 grid-flow-row grid-cols-2">
                 {radioOptions.map((item, idx) => {
                   return (
-                    <div key={item.id} onClick={this.onChangeRadioValue}>
+                    <div
+                      key={item.id}
+                      onClick={(e) => this.onChangeRadioValue(e)}
+                    >
                       <input
                         className="hidden peer"
                         type="radio"
@@ -133,7 +137,7 @@ class App extends React.Component {
                         id={item.id}
                         checked={this.state.checkedRadio == idx + 1}
                         value={item.value}
-                        onChange={this.changeRadio}
+                        onChange={(e) => this.changeRadio(e)}
                       />
                       <label
                         htmlFor={item.id}
@@ -193,7 +197,7 @@ class App extends React.Component {
           <ResultPanel
             tip={this.getTipAmount()}
             total={this.getTotalAmount()}
-            resetState={this.resetState}
+            resetState={() => this.resetState()}
           />
         </main>
       </div>
