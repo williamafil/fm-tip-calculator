@@ -88,8 +88,8 @@ class App extends React.Component {
           <img src={getImageUrl("logo.svg")} alt="logo" />
         </header>
 
-        <main className="bg-white rounded-t-3xl md:rounded-b-3xl w-full p-8 grid md:gap-6 md:grid-flow-row md:grid-cols-2">
-          <aside className="">
+        <main className="bg-white max-w-7xl rounded-t-3xl mx-auto md:rounded-b-3xl p-8 grid md:gap-6 md:grid-flow-row md:grid-cols-2">
+          <aside>
             <article className="mb-8">
               <div className="flex justify-between">
                 <label className="label">Bill</label>
